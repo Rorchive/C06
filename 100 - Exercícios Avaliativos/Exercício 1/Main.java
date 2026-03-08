@@ -19,22 +19,23 @@ public class Main {
 
         // Short type is sufficient for ticket counts in a cinema session (max 32767)
         short fullTicketAmount;
-        float fullTicketPrice;
+        double fullTicketPrice;
         short halfTicketAmount;
-        float halfTicketPrice;
+        double halfTicketPrice;
 
         try {
-            System.out.print("Amount of integer ticket: ");
+            System.out.print("Amount of full ticket: ");
             fullTicketAmount = Short.parseShort(inputScanner.nextLine());
 
-            System.out.print("Price of integer ticket: ");
-            fullTicketPrice = Float.parseFloat(inputScanner.nextLine().replace(",", "."));
+            System.out.print("Price of full ticket (R$): ");
+            // Allow comma as decimal separator (e.g., "12,50" → "12.50")
+            fullTicketPrice = Double.parseDouble(inputScanner.nextLine().replace(",", "."));
 
             System.out.print("Amount of half ticket: ");
             halfTicketAmount = Short.parseShort(inputScanner.nextLine());
 
-            System.out.print("Price of half ticket: ");
-            halfTicketPrice = Float.parseFloat(inputScanner.nextLine().replace(",", "."));
+            System.out.print("Price of half ticket (R$): ");
+            halfTicketPrice = Double.parseDouble(inputScanner.nextLine().replace(",", "."));
         } catch (NumberFormatException numberFormatException) {
             System.out.println("Invalid input. Please enter a valid number.");
             inputScanner.close();
@@ -45,27 +46,27 @@ public class Main {
             return;
         }
 
-        float revenueFullTicket = fullTicketAmount * fullTicketPrice;
-        float revenueHalfTicket = halfTicketAmount * halfTicketPrice;
-        float revenueTotal = revenueFullTicket + revenueHalfTicket;
+        double revenueFullTicket = fullTicketAmount * fullTicketPrice;
+        double revenueHalfTicket = halfTicketAmount * halfTicketPrice;
+        double revenueTotal = revenueFullTicket + revenueHalfTicket;
         int totalTickets = fullTicketAmount + halfTicketAmount;
         // Prevent division by zero
-        float revenueAverage = (totalTickets == 0) ? 0 : (revenueTotal / totalTickets);
+        double revenueAverage = (totalTickets == 0) ? 0 : (revenueTotal / totalTickets);
 
         String outputFormat = """
                 ==== CINEMA INFORMATION ====
 
                 Full Ticket Amount: %d
-                Full Ticket Price: %.2f
-                Full Ticket Revenue: %.2f
+                Full Ticket Price: R$ %.2f
+                Full Ticket Revenue: R$ %.2f
 
                 Half Ticket Amount: %d
-                Half Ticket Price: %.2f
-                Half Ticket Revenue: %.2f
+                Half Ticket Price: R$ %.2f
+                Half Ticket Revenue: R$ %.2f
 
                 Total Tickets: %d
-                Total Revenue: %.2f
-                Average Revenue: %.2f
+                Total Revenue: R$ %.2f
+                Average Revenue: R$ %.2f
                 """;
 
         System.out.printf(outputFormat, fullTicketAmount, fullTicketPrice, revenueFullTicket, halfTicketAmount, halfTicketPrice, revenueHalfTicket,  totalTickets, revenueTotal, revenueAverage);
