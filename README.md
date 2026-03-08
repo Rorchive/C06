@@ -103,7 +103,6 @@ Este repositório é uma iniciativa colaborativa para ajudar estudantes do Inate
 
 <div align="center">
   <sub>📜 Este projeto está licenciado sob a <a href="LICENSE">Licença MIT</a></sub>
-  </br>
   <sub>Construído com ❤️ por <a href="https://github.com/RodrigoCAndrade">Rodrigo Andrade</a></sub>
 </div>
 
